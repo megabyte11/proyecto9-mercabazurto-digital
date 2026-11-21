@@ -2,11 +2,6 @@
 
 Sistema de gestión de inventario por fecha de vencimiento (**FEFO**), atención de pedidos en orden de llegada y reparto equitativo de domicilios (**Round Robin**) diseñado para los puestos de productos perecederos del **Mercado de Bazurto (Cartagena de Indias)**.
 
-> **Institución:** Universidad Mayor de Cartagena / Institución Universitaria Colegio Mayor de Bolívar  
-> **Programa:** Ingeniería Informática (4.º semestre, grupo del sábado)  
-> **Asignatura:** Estructuras de Datos (Java) — Corte 3  
-> **Docente:** Ing. Odymar Augusto Pardo Echeverría
-
 ---
 
 ## 1. Problema que Resuelve
@@ -25,10 +20,10 @@ En los puestos de frutas, verduras y pescados del Mercado de Bazurto (como el pu
 
 | N.º | Integrante | Rol en el Proyecto | Responsabilidad Principal |
 | :-: | :--- | :--- | :--- |
-| 1 | **Miguel Andrés Baza Contreras** | Líder del proyecto y Arquitecto de TDA | Diseño UML, TDA (`Producto`, `Lote`, `Venta`, `Pedido`, `Mensajero`, `Movimiento`, `Puesto`), modularidad, inmutabilidad histórica e integración. |
-| 2 | **Rafael Enrique Muñoz Devoz** | Desarrollador de arreglos y algoritmos | Carga de CSV con arreglos propios (`CargadorCSV`), `Busquedas` (secuencial, ordenada y binaria), `Ordenamientos` (4 algoritmos) y `ConjuntosArreglos` (`S1 ∩ S2`, `S1 ∪ S2`). |
-| 3 | **Jesús Manuel Mendoza Gamarra** | Desarrollador de listas enlazadas | `Nodo<T>`, `NodoDoble<T>`, `ListaSimpleLotes` (FEFO + recursividad), `ListaSimplePedidos` (`O(1)`), `ListaSimpleVentas`, `ListaCircular` (Round Robin) y `ListaDoble` (bonificación +0,3). |
-| 4 | **Juan Diego Tobio Villadiego** | Analista de calidad (QA) y Storyteller | 16 casos de prueba (`PruebasSistema`), `Medidor` Big-O, `SimuladorSemana`, Storybook de 12 escenas (`docs/Storybook_MercaBazurto_Digital.pdf`) y guion de exposición. |
+| 1 | **Miguel** | Líder del proyecto y Arquitecto de TDA | Diseño UML, TDA (`Producto`, `Lote`, `Venta`, `Pedido`, `Mensajero`, `Movimiento`, `Puesto`), modularidad, inmutabilidad histórica e integración. |
+| 2 | **Rafael** | Desarrollador de arreglos y algoritmos | Carga de CSV con arreglos propios (`CargadorCSV`), `Busquedas` (secuencial, ordenada y binaria), `Ordenamientos` (4 algoritmos) y `ConjuntosArreglos` (`S1 ∩ S2`, `S1 ∪ S2`). |
+| 3 | **Jesús** | Desarrollador de listas enlazadas | `Nodo<T>`, `NodoDoble<T>`, `ListaSimpleLotes` (FEFO + recursividad), `ListaSimplePedidos` (`O(1)`), `ListaSimpleVentas`, `ListaCircular` (Round Robin) y `ListaDoble` (bonificación +0,3). |
+| 4 | **Juan** | Analista de calidad (QA) y Storyteller | 16 casos de prueba (`PruebasSistema`), `Medidor` Big-O, `SimuladorSemana`, Storybook de 12 escenas (`docs/Storybook_MercaBazurto_Digital.pdf`) y guion de exposición. |
 
 ---
 
