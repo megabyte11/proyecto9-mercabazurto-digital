@@ -1,0 +1,33 @@
+# Compilados y salidas de Java
+*.class
+bin/
+out/
+target/
+*.jar
+
+# Entornos de desarrollo (IDEs)
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# Carpetas locales de herramientas / agentes de diseño
+.agent/
+.agents/
+.claude/
+.cursor/
+.gemini/
+.opencode/
+.pi/
+.impeccable/
+
+# Archivos temporales del sistema operativo
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# Script auxiliar local para preparar commits antes de subir a GitHub
+preparar_git_y_commits.ps1

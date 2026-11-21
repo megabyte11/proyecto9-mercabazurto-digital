@@ -1,0 +1,201 @@
+codigo,nombre,categoria,precioCompraKg,precioVentaKg
+P001,Mango Tommy,Fruta,3200,4700
+P002,Pargo Rojo,Pescado,18000,24000
+P003,Tomate Chonto,Verdura,2500,3300
+P004,Aguacate Papelillo,Fruta,5000,7500
+P005,Sierra Fresca,Pescado,14000,18500
+P006,Mojarra Negra,Pescado,18000,25000
+P007,Piña Oro Miel,Fruta,3000,4000
+P008,Aji Topito Dulce,Verdura,5400,7400
+P009,Robalo Fresco,Pescado,9000,15100
+P010,Patilla Rayada,Fruta,2400,3700
+P011,Pimenton Rojo,Verdura,5800,6600
+P012,Lebranche Entero,Pescado,16500,21100
+P013,Guayaba Pera,Fruta,7000,8600
+P014,Zanahoria Bogotana,Verdura,2000,4150
+P015,Bocachico de Rio,Pescado,24000,30700
+P016,Maracuya Criollo,Fruta,4600,5900
+P017,Papa Pastusa,Verdura,6000,6950
+P018,Bagre Pintado,Pescado,19000,23900
+P019,Limon Tahini,Fruta,6400,8900
+P020,Papa Criolla,Verdura,1800,3650
+P021,Jurel Fresco,Pescado,19500,23800
+P022,Naranja Tangelo,Fruta,6200,8400
+P023,Yuca Venezolana,Verdura,5000,5650
+P024,Atun en Posta,Pescado,10500,14200
+P025,Banano Uraba,Fruta,5000,7200
+P026,Ñame Espino,Verdura,5400,5900
+P027,Corvina Blanca,Pescado,14000,20100
+P028,Platano Harton Maduro,Fruta,3200,3900
+P029,Ñame Diamante,Verdura,4200,5000
+P030,Camaron Tigre,Pescado,22000,24500
+P031,Melon Cantalupo,Fruta,2800,5450
+P032,Ahuyama Criolla,Verdura,3400,5400
+P033,Langostino Entero,Pescado,14000,21000
+P034,Lulo Seleccion,Fruta,5400,8500
+P035,Pepino Cohombro,Verdura,4200,6350
+P036,Calamar Limpio,Pescado,20000,25500
+P037,Mora de Castilla,Fruta,6200,7350
+P038,Lechuga Batavia,Verdura,3200,4150
+P039,Caracol de Pala,Pescado,20500,23300
+P040,Guanabana Fresca,Fruta,2400,5050
+P041,Repollo Blanco,Verdura,5200,6450
+P042,Cojinua Fresca,Pescado,10000,14900
+P043,Zapote Costeño,Fruta,2800,3650
+P044,Cilantro Fresco,Verdura,5000,6550
+P045,Pargo Pluma,Pescado,16500,20500
+P046,Nispero de Turbaco,Fruta,9200,12150
+P047,Cebollin Largo,Verdura,2000,4450
+P048,Mero en Filete,Pescado,19500,22000
+P049,Tamarindo Pulpa,Fruta,7800,10000
+P050,Berenjena Morada,Verdura,4600,5700
+P051,Sardina Plateada,Pescado,22500,28900
+P052,Coco Biche,Fruta,6000,8800
+P053,Habichuela Tierna,Verdura,6600,8600
+P054,Pulpo Fresco,Pescado,14500,21800
+P055,Corozo Fresco,Fruta,5400,8050
+P056,Remolacha Roja,Verdura,2400,3650
+P057,Tilapia Roja,Pescado,9000,16600
+P058,Uva Red Globe,Fruta,2600,4950
+P059,Ajo Nacional,Verdura,3600,5900
+P060,Trucha Arco Iris,Pescado,9000,14500
+P061,Manzana Roja,Fruta,9000,10000
+P062,Platano Verde,Verdura,3200,3850
+P063,Cachama Fresca,Pescado,24000,28600
+P064,Pera Verde,Fruta,8000,9150
+P065,Mazorca Tierna,Verdura,4800,5600
+P066,Sabalete Costeño,Pescado,19500,22900
+P067,Fresa Sabana,Fruta,4000,4700
+P068,Espinaca Hoja,Verdura,4400,4900
+P069,Bonito Entero,Pescado,9000,13600
+P070,Mandarina Arrayana,Fruta,5800,8000
+P071,Tomate Milano,Verdura,3200,3700
+P072,Pez Espada Posta,Pescado,11500,14300
+P073,Ciruela Criolla,Fruta,2000,3750
+P074,Apio Rama,Verdura,6600,7550
+P075,Lisa de Mar,Pescado,18000,25600
+P076,Mango de Azucar Extra,Fruta,8800,11000
+P077,Cebolla Roja Ocañera Primera,Verdura,4000,4500
+P078,Mojarra Roja Mayorista,Pescado,11000,13800
+P079,Papaya Maradol Seleccion,Fruta,4800,7900
+P080,Cebolla Blanca Extra,Verdura,3200,3700
+P081,Mojarra Negra Primera,Pescado,9000,13000
+P082,Piña Oro Miel Mayorista,Fruta,4200,5050
+P083,Aji Topito Dulce Seleccion,Verdura,5400,6800
+P084,Robalo Fresco Extra,Pescado,11000,16800
+P085,Patilla Rayada Primera,Fruta,8200,9950
+P086,Pimenton Rojo Mayorista,Verdura,1600,2250
+P087,Lebranche Entero Seleccion,Pescado,9500,15900
+P088,Guayaba Pera Extra,Fruta,3400,6050
+P089,Zanahoria Bogotana Primera,Verdura,5400,6500
+P090,Bocachico de Rio Mayorista,Pescado,9500,15900
+P091,Maracuya Criollo Seleccion,Fruta,3600,5200
+P092,Papa Pastusa Extra,Verdura,2800,3750
+P093,Bagre Pintado Primera,Pescado,9500,13500
+P094,Limon Tahini Mayorista,Fruta,2800,3650
+P095,Papa Criolla Seleccion,Verdura,2600,3550
+P096,Jurel Fresco Extra,Pescado,23500,30800
+P097,Naranja Tangelo Primera,Fruta,2600,5700
+P098,Yuca Venezolana Mayorista,Verdura,3400,5400
+P099,Atun en Posta Seleccion,Pescado,18000,24700
+P100,Banano Uraba Extra,Fruta,2200,3200
+P101,Ñame Espino Primera,Verdura,1800,3950
+P102,Corvina Blanca Mayorista,Pescado,12000,19000
+P103,Platano Harton Maduro Seleccion,Fruta,5800,6500
+P104,Ñame Diamante Extra,Verdura,4600,5400
+P105,Camaron Tigre Primera,Pescado,15500,22200
+P106,Melon Cantalupo Mayorista,Fruta,8800,10850
+P107,Ahuyama Criolla Seleccion,Verdura,5600,8050
+P108,Langostino Entero Extra,Pescado,24500,32100
+P109,Lulo Seleccion Primera,Fruta,4400,6300
+P110,Pepino Cohombro Mayorista,Verdura,3200,5500
+P111,Calamar Limpio Seleccion,Pescado,22500,28600
+P112,Mora de Castilla Extra,Fruta,6800,9300
+P113,Lechuga Batavia Primera,Verdura,5000,7000
+P114,Caracol de Pala Mayorista,Pescado,12000,14500
+P115,Guanabana Fresca Seleccion,Fruta,2200,4100
+P116,Repollo Blanco Extra,Verdura,6200,8050
+P117,Cojinua Fresca Primera,Pescado,9000,12100
+P118,Zapote Costeño Mayorista,Fruta,6200,7200
+P119,Cilantro Fresco Seleccion,Verdura,6200,6700
+P120,Pargo Pluma Extra,Pescado,11000,18000
+P121,Nispero de Turbaco Primera,Fruta,9400,11000
+P122,Cebollin Largo Mayorista,Verdura,2800,4800
+P123,Mero en Filete Seleccion,Pescado,13000,15800
+P124,Tamarindo Pulpa Extra,Fruta,5000,6150
+P125,Berenjena Morada Primera,Verdura,2000,2800
+P126,Sardina Plateada Mayorista,Pescado,22500,30100
+P127,Coco Biche Seleccion,Fruta,5000,8250
+P128,Habichuela Tierna Extra,Verdura,3000,3950
+P129,Pulpo Fresco Primera,Pescado,13000,17000
+P130,Corozo Fresco Mayorista,Fruta,2800,5750
+P131,Remolacha Roja Seleccion,Verdura,5800,8100
+P132,Tilapia Roja Extra,Pescado,18500,26100
+P133,Uva Red Globe Primera,Fruta,4200,5800
+P134,Ajo Nacional Mayorista,Verdura,6200,8500
+P135,Trucha Arco Iris Seleccion,Pescado,16500,20200
+P136,Manzana Roja Extra,Fruta,7800,8650
+P137,Platano Verde Primera,Verdura,3600,5000
+P138,Cachama Fresca Mayorista,Pescado,10000,15500
+P139,Pera Verde Seleccion,Fruta,2200,3350
+P140,Mazorca Tierna Extra,Verdura,2000,2500
+P141,Sabalete Costeño Primera,Pescado,19000,26600
+P142,Fresa Sabana Mayorista,Fruta,7400,9600
+P143,Espinaca Hoja Seleccion,Verdura,3200,4000
+P144,Bonito Entero Extra,Pescado,23500,27500
+P145,Mandarina Arrayana Primera,Fruta,8800,11000
+P146,Tomate Milano Mayorista,Verdura,2800,3600
+P147,Pez Espada Posta Seleccion,Pescado,24000,26500
+P148,Ciruela Criolla Extra,Fruta,8400,11200
+P149,Apio Rama Primera,Verdura,2200,2850
+P150,Lisa de Mar Mayorista,Pescado,18000,21400
+P151,Mango de Azucar Extra,Fruta,4200,5500
+P152,Cebolla Roja Ocañera Primera,Verdura,3800,4750
+P153,Mojarra Roja Mayorista,Pescado,17500,23900
+P154,Papaya Maradol Seleccion,Fruta,7600,9800
+P155,Cebolla Blanca Extra,Verdura,5600,6400
+P156,Mojarra Negra Primera,Pescado,22500,28000
+P157,Piña Oro Miel Mayorista,Fruta,2600,5700
+P158,Aji Topito Dulce Seleccion,Verdura,4800,5600
+P159,Robalo Fresco Extra,Pescado,11500,17600
+P160,Patilla Rayada Primera,Fruta,7600,8450
+P161,Pimenton Rojo Mayorista,Verdura,4400,5350
+P162,Lebranche Entero Seleccion,Pescado,23500,29900
+P163,Guayaba Pera Extra,Fruta,3200,5700
+P164,Zanahoria Bogotana Primera,Verdura,3800,5500
+P165,Bocachico de Rio Mayorista,Pescado,17000,21300
+P166,Maracuya Criollo Seleccion,Fruta,3400,6200
+P167,Papa Pastusa Extra,Verdura,1600,3900
+P168,Bagre Pintado Primera,Pescado,20500,27800
+P169,Limon Tahini Mayorista,Fruta,3400,6500
+P170,Papa Criolla Seleccion,Verdura,4400,6550
+P171,Jurel Fresco Extra,Pescado,9500,12600
+P172,Naranja Tangelo Primera,Fruta,6600,8050
+P173,Yuca Venezolana Mayorista,Verdura,6400,8700
+P174,Atun en Posta Seleccion,Pescado,21000,25000
+P175,Banano Uraba Extra,Fruta,9400,10100
+P176,Ñame Espino Primera,Verdura,4400,4900
+P177,Corvina Blanca Mayorista,Pescado,21500,26100
+P178,Platano Harton Maduro Seleccion,Fruta,2000,5100
+P179,Ñame Diamante Extra,Verdura,4600,5550
+P180,Camaron Tigre Primera,Pescado,19000,22400
+P181,Melon Cantalupo Mayorista,Fruta,3800,7050
+P182,Ahuyama Criolla Seleccion,Verdura,6200,6850
+P183,Langostino Entero Extra,Pescado,24000,27700
+P184,Lulo Seleccion Primera,Fruta,3400,5300
+P185,Pepino Cohombro Mayorista,Verdura,1600,3000
+P186,Calamar Limpio Seleccion,Pescado,21000,23800
+P187,Mora de Castilla Extra,Fruta,2600,5400
+P188,Lechuga Batavia Primera,Verdura,3800,6250
+P189,Caracol de Pala Mayorista,Pescado,9000,13000
+P190,Guanabana Fresca Seleccion,Fruta,8000,9000
+P191,Repollo Blanco Extra,Verdura,2600,4450
+P192,Cojinua Fresca Primera,Pescado,24000,27700
+P193,Zapote Costeño Mayorista,Fruta,4000,6650
+P194,Cilantro Fresco Seleccion,Verdura,4200,6350
+P195,Pargo Pluma Extra,Pescado,18500,21600
+P196,Nispero de Turbaco Primera,Fruta,3400,6350
+P197,Cebollin Largo Mayorista,Verdura,3600,5900
+P198,Mero en Filete Seleccion,Pescado,22500,28000
+P199,Tamarindo Pulpa Extra,Fruta,5200,7400
+P200,Berenjena Morada Primera,Verdura,4200,5600

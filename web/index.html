@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MercaBazurto Digital — Control diario del puesto</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- BARRA LATERAL DE NAVEGACION -->
+    <aside class="sidebar" aria-label="Navegacion principal del puesto">
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true">
+          <!-- Emblem SVG geometrico limpio: canasta de mercado -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 10h14l-1.5 9h-11L5 10z"/>
+            <path d="M9 10l3-5 3 5"/>
+            <path d="M9.5 14v2.5M12 14v2.5M14.5 14v2.5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">MercaBazurto Digital</div>
+          <div class="brand-sub">Puesto de Doña Rosa</div>
+        </div>
+      </div>
+
+      <nav class="nav-group" aria-label="Secciones del puesto">
+        <button type="button" class="nav-btn active" data-view="inicio">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/><path d="M9.5 20v-6h5v6"/></svg>
+          <span>Inicio del día</span>
+        </button>
+
+        <button type="button" class="nav-btn" data-view="ventas">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/><path d="M7 15h4"/></svg>
+          <span>Ventas</span>
+          <span class="nav-badge" id="badge-ventas">0</span>
+        </button>
+
+        <button type="button" class="nav-btn" data-view="productos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><circle cx="7" cy="7" r="1.25"/></svg>
+          <span>Productos y precios</span>
+        </button>
+
+        <button type="button" class="nav-btn" data-view="vencimiento">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          <span>Lo que vence primero</span>
+          <span class="nav-badge danger" id="badge-vencidos">0</span>
+        </button>
+
+        <button type="button" class="nav-btn" data-view="pedidos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 18H3V7a2 2 0 0 1 2-2h9v13H8"/><path d="M14 9h4l3 4v5h-3"/><circle cx="6.5" cy="18" r="1.5"/><circle cx="16.5" cy="18" r="1.5"/></svg>
+          <span>Pedidos y mensajeros</span>
+          <span class="nav-badge warn" id="badge-pedidos">0</span>
+        </button>
+
+        <button type="button" class="nav-btn" data-view="margen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+          <span>Ganancias y clientes</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="puesto-meta">
+          <strong>Jornada: <span id="sidebar-fecha">2026-11-20</span></strong>
+          <span>Sector La Rampa, Bazurto</span>
+        </div>
+        <button type="button" class="nav-btn nav-btn-tech" data-view="auditoria">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8"/><path d="M12 18v2"/><path d="M8 10l2.5 2L8 14"/><path d="M13 14h3"/></svg>
+          <span>Auditoría técnica</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-area">
+
+      <!-- ================================================================ -->
+      <!-- VISTA 1: INICIO / RESUMEN DEL DIA                                -->
+      <!-- ================================================================ -->
+      <section id="view-inicio" class="view-panel active" aria-labelledby="titulo-inicio">
+        <header class="page-header">
+          <div>
+            <h1 id="titulo-inicio">Resumen del día</h1>
+            <p>Lo más importante de tu puesto de un solo vistazo: cuánto has vendido, cuánto vale tu bodega y qué canastas debes sacar primero.</p>
+          </div>
+          <div class="header-actions">
+            <button type="button" class="btn btn-primary" data-jump="ventas">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+              <span>Registrar venta</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="ledger-strip" aria-label="Indicadores principales del puesto">
+          <div class="ledger-cell">
+            <span class="ledger-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Total vendido hoy
+            </span>
+            <span class="ledger-value" id="kpi-vendido">$0</span>
+            <span class="ledger-note" id="kpi-ventas-count">0 ventas registradas</span>
+          </div>
+
+          <div class="ledger-cell">
+            <span class="ledger-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/></svg>
+              Ganancia neta hoy
+            </span>
+            <span class="ledger-value positive" id="kpi-ganancia">$0</span>
+            <span class="ledger-note">Descontando costo real de cada lote</span>
+          </div>
+
+          <div class="ledger-cell">
+            <span class="ledger-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M3.27 6.96L12 12l8.73-5.04M12 22V12"/></svg>
+              Plata en bodega
+            </span>
+            <span class="ledger-value" id="kpi-inventario">$0</span>
+            <span class="ledger-note" id="kpi-lotes-count">0 lotes activos</span>
+          </div>
+
+          <div class="ledger-cell">
+            <span class="ledger-label">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+              Lotes por revisar
+            </span>
+            <span class="ledger-value warn" id="kpi-alertas">0</span>
+            <span class="ledger-note" id="kpi-alertas-detalle">0 vencidos · 0 próximos</span>
+          </div>
+        </div>
+
+        <div class="workspace-grid">
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Saca primero estas canastas</h2>
+                <p>Lotes ordenados automáticamente del que vence más pronto al más fresco.</p>
+              </div>
+              <button type="button" class="btn btn-danger-outline btn-sm" id="btn-inicio-retirar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg>
+                <span>Retirar vencidos</span>
+              </button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Lote</th>
+                    <th>Vence</th>
+                    <th class="num">Kilos</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="inicio-alertas-body"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Acciones rápidas del puesto</h2>
+                <p>Todo a un solo toque, sin buscar menús complicados.</p>
+              </div>
+            </div>
+            <div class="quick-action-list">
+              <button type="button" class="quick-action-btn primary-action" data-jump="ventas">
+                <span class="qa-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 5v14M5 12h14"/></svg>
+                </span>
+                <span>
+                  <span class="qa-title">Registrar nueva venta</span>
+                  <span class="qa-desc">Descuenta sola del lote que vence primero</span>
+                </span>
+              </button>
+
+              <button type="button" class="quick-action-btn" data-jump="vencimiento">
+                <span class="qa-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M21 8l-9-5-9 5v8l9 5 9-5V8z"/><path d="M12 12v10"/></svg>
+                </span>
+                <span>
+                  <span class="qa-title">Ingresar canastas nuevas</span>
+                  <span class="qa-desc">Guarda el lote en orden según su fecha de vencimiento</span>
+                </span>
+              </button>
+
+              <button type="button" class="quick-action-btn" data-jump="pedidos">
+                <span class="qa-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M5 18H3V7a2 2 0 0 1 2-2h9v13H8"/><path d="M14 9h4l3 4v5h-3"/><circle cx="6.5" cy="18" r="1.5"/><circle cx="16.5" cy="18" r="1.5"/></svg>
+                </span>
+                <span>
+                  <span class="qa-title">Despachar pedidos y turnos</span>
+                  <span class="qa-desc" id="inicio-turno-resumen">Próximo mensajero en turno: Carlos</span>
+                </span>
+              </button>
+
+              <button type="button" class="quick-action-btn" data-jump="productos">
+                <span class="qa-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                </span>
+                <span>
+                  <span class="qa-title">Cambiar precio o agregar producto</span>
+                  <span class="qa-desc">Nunca daña las ventas que ya registraste antes</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- VISTA 2: VENTAS (NUEVA VENTA + HISTORIAL INMUTABLE)              -->
+      <!-- ================================================================ -->
+      <section id="view-ventas" class="view-panel" aria-labelledby="titulo-ventas">
+        <header class="page-header">
+          <div>
+            <h1 id="titulo-ventas">Ventas del puesto</h1>
+            <p>Anota cada venta en segundos. El programa descuenta automáticamente las canastas más próximas a vencer y guarda tu ganancia real.</p>
+          </div>
+        </header>
+
+        <div class="workspace-grid-form">
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Nueva venta</h2>
+                <p>Elige el producto y escribe cuántos kilos lleva el cliente.</p>
+              </div>
+            </div>
+            <form id="form-venta" class="form-stack">
+              <div class="field">
+                <label for="venta-producto">Producto</label>
+                <select id="venta-producto" required></select>
+              </div>
+
+              <div class="field">
+                <label for="venta-kilos">Kilos vendidos</label>
+                <input type="number" id="venta-kilos" min="1" step="1" value="10" required>
+                <span class="field-help" id="venta-stock-help">Disponible en bodega: -</span>
+              </div>
+
+              <div class="field">
+                <label for="venta-cliente">Cliente (opcional)</label>
+                <input type="text" id="venta-cliente" placeholder="Ej. Restaurante La Mulata o deja vacío">
+              </div>
+
+              <div class="calc-preview" aria-live="polite">
+                <div class="calc-preview-row">
+                  <span>Precio vigente por kilo</span>
+                  <strong id="venta-prev-precio">$0</strong>
+                </div>
+                <div class="calc-preview-row">
+                  <span>Sale primero del lote que vence</span>
+                  <strong id="venta-prev-vence">-</strong>
+                </div>
+                <div class="calc-preview-row total-line">
+                  <span>Total a cobrar</span>
+                  <strong id="venta-prev-total">$0</strong>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                <span>Confirmar venta</span>
+              </button>
+            </form>
+          </div>
+
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Registro de ventas realizadas</h2>
+                <p id="ventas-totales-resumen">Total vendido: $0 · Ganancia real: $0</p>
+              </div>
+            </div>
+
+            <div class="toolbar">
+              <input type="search" id="filtro-ventas" class="search-input" placeholder="Filtrar por producto, cliente o número de venta...">
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Venta y hora</th>
+                    <th>Producto y lotes</th>
+                    <th>Cliente</th>
+                    <th class="num">Kg</th>
+                    <th class="num">Precio/kg</th>
+                    <th class="num">Total</th>
+                    <th class="num">Ganancia</th>
+                  </tr>
+                </thead>
+                <tbody id="ventas-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- VISTA 3: PRODUCTOS Y PRECIOS (CON PROTECCION DE HISTORIAL)       -->
+      <!-- ================================================================ -->
+      <section id="view-productos" class="view-panel" aria-labelledby="titulo-productos">
+        <header class="page-header">
+          <div>
+            <h1 id="titulo-productos">Productos y precios</h1>
+            <p>Agrega nuevos productos o actualiza precios cuando cambie el mercado. Tus ventas y lotes anteriores quedan intactos.</p>
+          </div>
+        </header>
+
+        <div class="workspace-grid-form">
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2 id="prod-form-titulo">Agregar nuevo producto</h2>
+                <p id="prod-form-sub">El margen de ganancia se calcula automáticamente.</p>
+              </div>
+              <button type="button" class="btn btn-secondary btn-sm" id="btn-prod-limpiar" style="display:none;">Nuevo</button>
+            </div>
+
+            <form id="form-producto" class="form-stack">
+              <input type="hidden" id="prod-modo" value="crear">
+
+              <div class="form-row-2">
+                <div class="field">
+                  <label for="prod-codigo">Código</label>
+                  <input type="text" id="prod-codigo" placeholder="Ej. P201" required>
+                </div>
+                <div class="field">
+                  <label for="prod-categoria">Categoría</label>
+                  <select id="prod-categoria" required>
+                    <option value="Fruta">Fruta</option>
+                    <option value="Verdura">Verdura</option>
+                    <option value="Pescado">Pescado</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="prod-nombre">Nombre del producto</label>
+                <input type="text" id="prod-nombre" placeholder="Ej. Mango Tommy" required>
+              </div>
+
+              <div class="form-row-2">
+                <div class="field">
+                  <label for="prod-compra">Precio compra ($/kg)</label>
+                  <input type="number" id="prod-compra" min="100" step="100" value="3200" required>
+                </div>
+                <div class="field">
+                  <label for="prod-venta">Precio venta ($/kg)</label>
+                  <input type="number" id="prod-venta" min="100" step="100" value="4700" required>
+                </div>
+              </div>
+
+              <div class="calc-preview" aria-live="polite">
+                <div class="calc-preview-row">
+                  <span>Ganancia por kilo</span>
+                  <strong id="prod-prev-ganancia">$1.500</strong>
+                </div>
+                <div class="calc-preview-row">
+                  <span>Margen sobre venta</span>
+                  <strong id="prod-prev-margen">31,9%</strong>
+                </div>
+              </div>
+
+              <div class="notice-box" id="prod-aviso-historial">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                <span><strong>Historial protegido:</strong> si cambias un precio, las ventas anteriores y los lotes que ya entraron a bodega mantienen su precio original.</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" id="btn-prod-guardar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+                <span>Guardar producto</span>
+              </button>
+            </form>
+          </div>
+
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Catálogo del puesto</h2>
+                <p id="productos-conteo">200 productos disponibles</p>
+              </div>
+            </div>
+
+            <div class="toolbar">
+              <input type="search" id="filtro-productos" class="search-input" placeholder="Buscar por código (ej. P001) o nombre (ej. Mango)...">
+              <select id="filtro-categoria" class="filter-select" aria-label="Filtrar por categoria">
+                <option value="todas">Todas las categorías</option>
+                <option value="Fruta">Frutas</option>
+                <option value="Verdura">Verduras</option>
+                <option value="Pescado">Pescados</option>
+              </select>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Código</th>
+                    <th>Producto</th>
+                    <th class="num">Compra</th>
+                    <th class="num">Venta</th>
+                    <th class="num">Ganancia</th>
+                    <th class="num">Stock</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="productos-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- VISTA 4: INVENTARIO POR VENCIMIENTO (LO QUE VENCE PRIMERO)       -->
+      <!-- ================================================================ -->
+      <section id="view-vencimiento" class="view-panel" aria-labelledby="titulo-vencimiento">
+        <header class="page-header">
+          <div>
+            <h1 id="titulo-vencimiento">Lo que vence primero</h1>
+            <p>Cada lote se ordena automáticamente por su fecha de vencimiento para evitar que las canastas viejas queden al fondo.</p>
+          </div>
+          <div class="header-actions">
+            <button type="button" class="btn btn-danger-outline" id="btn-retirar-vencidos">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg>
+              <span>Retirar lotes vencidos</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="workspace-grid-form">
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Ingresar lote nuevo</h2>
+                <p>Al guardar, el lote queda ubicado en su orden exacto de vencimiento.</p>
+              </div>
+            </div>
+
+            <form id="form-lote" class="form-stack">
+              <div class="field">
+                <label for="lote-producto">Producto</label>
+                <select id="lote-producto" required></select>
+              </div>
+
+              <div class="field">
+                <label for="lote-fecha">Fecha de vencimiento</label>
+                <input type="date" id="lote-fecha" value="2026-11-26" required>
+              </div>
+
+              <div class="form-row-2">
+                <div class="field">
+                  <label for="lote-kilos">Kilos que entran</label>
+                  <input type="number" id="lote-kilos" min="1" step="1" value="30" required>
+                </div>
+                <div class="field">
+                  <label for="lote-codigo">Código lote (opcional)</label>
+                  <input type="text" id="lote-codigo" placeholder="Automático">
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                <span>Ingresar lote en orden</span>
+              </button>
+            </form>
+          </div>
+
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Lotes ordenados por vencimiento</h2>
+                <p id="lotes-resumen-conteo">Vencidos: 0 · Próximos a vencer: 0 · Vigentes: 0</p>
+              </div>
+            </div>
+
+            <div class="toolbar">
+              <select id="filtro-lote-producto" class="filter-select" aria-label="Filtrar lotes por producto" style="flex:1 1 220px;">
+                <option value="">Todos los productos (más urgentes primero)</option>
+              </select>
+              <select id="filtro-lote-estado" class="filter-select" aria-label="Filtrar lotes por estado">
+                <option value="TODOS">Todos los estados</option>
+                <option value="VENCIDO">Solo vencidos</option>
+                <option value="PROXIMO">Solo próximos a vencer</option>
+                <option value="VIGENTE">Solo vigentes</option>
+              </select>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Lote</th>
+                    <th>Producto</th>
+                    <th>Fecha vence</th>
+                    <th class="num">Kilos</th>
+                    <th class="num">Costo/kg</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody id="lotes-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- VISTA 5: PEDIDOS Y DOMICILIOS (FILA O(1) + TURNOS ROUND ROBIN)   -->
+      <!-- ================================================================ -->
+      <section id="view-pedidos" class="view-panel" aria-labelledby="titulo-pedidos">
+        <header class="page-header">
+          <div>
+            <h1 id="titulo-pedidos">Pedidos y mensajeros</h1>
+            <p>Atiende cada encargo telefónico en estricto orden de llegada y reparte los domicilios por turno justo entre Carlos, Dairo y Édgar.</p>
+          </div>
+          <div class="header-actions">
+            <button type="button" class="btn btn-primary" id="btn-despachar-pedido">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M5 12h14"/><path d="M13 5l7 7-7 7"/></svg>
+              <span>Despachar siguiente pedido</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- PANEL DE MENSAJEROS EN TURNO -->
+        <div class="surface-box" style="margin-bottom:24px;">
+          <div class="box-header">
+            <div>
+              <h2>Turnos de mensajeros (reparto equitativo)</h2>
+              <p>Al asignar un domicilio, el turno rota automáticamente al siguiente mensajero.</p>
+            </div>
+            <div class="header-actions">
+              <input type="text" id="turno-destino" class="search-input" placeholder="Destino rápido (ej. Restaurante El Muelle)" style="min-width:240px;">
+              <button type="button" class="btn btn-secondary" id="btn-asignar-mensajero">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+                <span>Asignar mensajero (1 clic)</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="messenger-grid" id="mensajeros-grid"></div>
+        </div>
+
+        <div class="workspace-grid-form">
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Anotar pedido nuevo</h2>
+                <p>Entra al final de la fila para que ningún cliente se pierda.</p>
+              </div>
+            </div>
+            <form id="form-pedido" class="form-stack">
+              <div class="field">
+                <label for="ped-cliente">Cliente (tienda o restaurante)</label>
+                <input type="text" id="ped-cliente" placeholder="Ej. Restaurante La Mulata" required>
+              </div>
+
+              <div class="field">
+                <label for="ped-producto">Producto pedido</label>
+                <select id="ped-producto" required></select>
+              </div>
+
+              <div class="form-row-2">
+                <div class="field">
+                  <label for="ped-kilos">Kilos</label>
+                  <input type="number" id="ped-kilos" min="1" step="1" value="25" required>
+                </div>
+                <div class="field">
+                  <label for="ped-semana">Semana de compra</label>
+                  <select id="ped-semana">
+                    <option value="1">Semana 1</option>
+                    <option value="2">Semana 2</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                <span>Guardar pedido en fila</span>
+              </button>
+            </form>
+          </div>
+
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Fila de pedidos pendientes</h2>
+                <p id="pedidos-conteo">Mostrando los primeros pedidos en orden de llegada</p>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Pedido</th>
+                    <th>Cliente</th>
+                    <th>Producto</th>
+                    <th class="num">Kilos</th>
+                    <th>Hora</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody id="pedidos-body"></tbody>
+              </table>
+            </div>
+
+            <div id="pedidos-atendidos-wrap" style="margin-top:20px; display:none;">
+              <div class="box-header" style="margin-bottom:10px;">
+                <h2>Últimos despachos y cancelaciones</h2>
+              </div>
+              <div class="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Pedido</th>
+                      <th>Cliente</th>
+                      <th>Estado</th>
+                      <th>Mensajero</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pedidos-atendidos-body"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- VISTA 6: MARGEN DE GANANCIA Y CLIENTES FRECUENTES                -->
+      <!-- ================================================================ -->
+      <section id="view-margen" class="view-panel" aria-labelledby="titulo-margen">
+        <header class="page-header">
+          <div>
+            <h1 id="titulo-margen">Ganancias y clientes frecuentes</h1>
+            <p>Descubre qué productos te dejan más plata por kilo y quiénes son los restaurantes y tiendas que te compran todas las semanas.</p>
+          </div>
+        </header>
+
+        <div class="surface-box" style="margin-bottom:24px;">
+          <div class="box-header">
+            <div>
+              <h2>Productos ordenados por mayor ganancia</h2>
+              <p id="margen-metrica">Ordenado de mayor a menor ganancia por kilo.</p>
+            </div>
+            <div class="segmented-group" role="group" aria-label="Elegir algoritmo de ordenamiento">
+              <button type="button" class="seg-btn active" data-alg="mergesort">Merge Sort</button>
+              <button type="button" class="seg-btn" data-alg="quicksort">Quick Sort</button>
+              <button type="button" class="seg-btn" data-alg="burbuja_mejorada">Burbuja Mejorada</button>
+              <button type="button" class="seg-btn" data-alg="burbuja">Burbuja</button>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Puesto</th>
+                  <th>Código</th>
+                  <th>Producto</th>
+                  <th>Categoría</th>
+                  <th class="num">Compra</th>
+                  <th class="num">Venta</th>
+                  <th class="num">Ganancia/kg</th>
+                  <th class="num">Margen</th>
+                </tr>
+              </thead>
+              <tbody id="margen-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="workspace-grid-equal">
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Clientes frecuentes (compraron las 2 semanas)</h2>
+                <p id="clientes-frec-sub">Intersección S1 ∩ S2 sobre arreglos propios</p>
+              </div>
+            </div>
+            <div class="chip-list" id="clientes-frecuentes-list"></div>
+          </div>
+
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Total de clientes únicos en la quincena</h2>
+                <p id="clientes-uni-sub">Unión sin duplicados S1 ∪ S2 sobre arreglos propios</p>
+              </div>
+            </div>
+            <div class="chip-list" id="clientes-unicos-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================ -->
+      <!-- VISTA 7: AUDITORIA TECNICA / EXPOSICION EN VIVO                  -->
+      <!-- ================================================================ -->
+      <section id="view-auditoria" class="view-panel" aria-labelledby="titulo-auditoria">
+        <header class="page-header">
+          <div>
+            <h1 id="titulo-auditoria">Auditoría técnica y demostración en vivo</h1>
+            <p>Panel técnico para sustentar las estructuras de datos propias en Java 17 (Unidades 1, 2 y 3) ante el docente.</p>
+          </div>
+          <div class="header-actions">
+            <button type="button" class="btn btn-secondary" id="btn-recargar-csv">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+              <span>Regenerar y cargar 3 CSV oficiales</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="audit-tabs" role="tablist" aria-label="Herramientas de auditoria">
+          <button type="button" class="audit-tab-btn active" data-audit-tab="simulacion">Simulación Doña Rosa</button>
+          <button type="button" class="audit-tab-btn" data-audit-tab="busqueda">Binaria vs. Secuencial</button>
+          <button type="button" class="audit-tab-btn" data-audit-tab="medidor">Medidor Big-O en vivo</button>
+          <button type="button" class="audit-tab-btn" data-audit-tab="listadoble">ListaDoble (Bonificación +0,3)</button>
+          <button type="button" class="audit-tab-btn" data-audit-tab="pruebas">16 Pruebas automatizadas</button>
+        </div>
+
+        <!-- SUBPANEL A: SIMULACION SEMANA DONA ROSA -->
+        <div id="audit-simulacion" class="audit-subpanel active">
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Simulación de una semana de ventas: Cuaderno vs. MercaBazurto FEFO</h2>
+                <p>Caso verificado del puesto de Doña Rosa: 145 kg de Mango Tommy en 4 lotes ($464.000), cierre viernes 15 nov.</p>
+              </div>
+              <div class="header-actions">
+                <label for="sim-demanda" style="font-size:0.875rem; font-weight:600;">Demanda semanal (kg):</label>
+                <input type="number" id="sim-demanda" class="filter-select" value="90" min="10" max="145" step="5" style="width:92px;">
+                <button type="button" class="btn btn-primary btn-sm" id="btn-correr-sim">Simular semana</button>
+              </div>
+            </div>
+            <div id="sim-resultado"></div>
+          </div>
+        </div>
+
+        <!-- SUBPANEL B: COMPARADOR DE BUSQUEDAS -->
+        <div id="audit-busqueda" class="audit-subpanel">
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Comparador: Búsqueda Secuencial O(n) vs. Búsqueda Binaria O(log2 n)</h2>
+                <p>Prueba el peor caso oficial (P200) o un código inexistente (P050A / P999) sobre los 200 productos del CSV.</p>
+              </div>
+              <div class="header-actions">
+                <input type="text" id="busq-codigo" class="filter-select mono" value="P200" style="width:120px;">
+                <button type="button" class="btn btn-primary btn-sm" id="btn-comparar-busq">Comparar búsquedas</button>
+              </div>
+            </div>
+            <div id="busq-resultado"></div>
+          </div>
+        </div>
+
+        <!-- SUBPANEL C: MEDIDOR BIG-O EN VIVO -->
+        <div id="audit-medidor" class="audit-subpanel">
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Ejecutor en vivo de la clase Medidor (System.nanoTime())</h2>
+                <p>Mide tiempos reales en tu equipo para n = 200, n = 2.000 y n = 5.000 elementos.</p>
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" id="btn-correr-medidor">Medir tiempos reales ahora</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Operación / Algoritmo</th>
+                    <th>Big-O</th>
+                    <th>Fórmula</th>
+                    <th class="num">n = 200</th>
+                    <th class="num">n = 2.000</th>
+                    <th class="num">n = 5.000</th>
+                  </tr>
+                </thead>
+                <tbody id="medidor-body">
+                  <tr><td colspan="6" class="empty-state">Pulsa "Medir tiempos reales ahora" para ejecutar la clase Medidor en Java 17.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUBPANEL D: LISTA DOBLE (BONIFICACION) -->
+        <div id="audit-listadoble" class="audit-subpanel">
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Movimientos del día en ListaDoble&lt;Movimiento&gt; (ant y sig)</h2>
+                <p>Recorre la bitácora del primero al último usando referencias sig, o del más reciente al primero usando ant.</p>
+              </div>
+              <div class="segmented-group" role="group" aria-label="Sentido de recorrido de ListaDoble">
+                <button type="button" class="seg-btn active" data-dir="adelante">Recorrer adelante (sig)</button>
+                <button type="button" class="seg-btn" data-dir="atras">Recorrer atrás (ant)</button>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Fecha y hora</th>
+                    <th>Tipo</th>
+                    <th>Descripción del movimiento</th>
+                    <th class="num">Impacto</th>
+                  </tr>
+                </thead>
+                <tbody id="movimientos-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUBPANEL E: 16 PRUEBAS AUTOMATIZADAS -->
+        <div id="audit-pruebas" class="audit-subpanel">
+          <div class="surface-box">
+            <div class="box-header">
+              <div>
+                <h2>Suite automatizada PruebasSistema (16 casos de prueba)</h2>
+                <p id="pruebas-resumen">Verifica listas propias, algoritmos, carga de CSV, simulación e inmutabilidad histórica.</p>
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" id="btn-correr-pruebas">Ejecutar 16 pruebas</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Estado</th>
+                    <th>Caso</th>
+                    <th>Prueba verificada</th>
+                    <th>Evidencia</th>
+                  </tr>
+                </thead>
+                <tbody id="pruebas-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- CONTENEDOR DE NOTIFICACIONES -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
